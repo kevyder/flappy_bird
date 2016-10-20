@@ -1,6 +1,7 @@
 var game = new Phaser.Game(400, 600, Phaser.CANVAS, 'container-game');
 var backgroundGame;
 var flappy;
+var keys;
 var mainstate = {
     preload: function(){
         game.load.image('background', '../img/bg.jpeg');
@@ -9,13 +10,25 @@ var mainstate = {
     create: function(){
         backgroundGame = game.add.tileSprite(0, 0, 400, 600, 'background');
         flappy = game.add.sprite(0, 200, 'birds');
-        flappy.frame = 1;
-        flappy.animations.add('fly', [0, 1, 3], 7, true);
+        flappy.animations.add('fly', [1, 0, 2], 4, true);
+        keys = game.input.keyboard.createCursorKeys();
     },
     
     update: function(){
         backgroundGame.tilePosition.x -= 1;
         flappy.animations.play('fly');
+        if (keys.right.isDown){
+            flappy.position.x += 1;
+        }
+        if (keys.left.isDown){
+            flappy.position.x -= 1;
+        }
+        if (keys.up.isDown){
+            flappy.position.y -= 1;
+        }
+        if (keys.down.isDown){
+            flappy.position.y += 1;
+        }
     }
 };
 
