@@ -12,6 +12,9 @@ var mainstate = {
         flappy = game.add.sprite(0, 200, 'birds');
         flappy.animations.add('fly', [1, 0, 2], 4, true);
         keys = game.input.keyboard.createCursorKeys();
+        game.physics.startSystem(Phaser.Physics.ARCADE); // Fisicas
+        game.physics.arcade.enable(flappy);
+        flappy.body.collideWorldBounds = true;
     },
     
     update: function(){
