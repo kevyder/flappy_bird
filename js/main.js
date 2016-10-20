@@ -1,24 +1,21 @@
 var game = new Phaser.Game(400, 600, Phaser.CANVAS, 'container-game');
 var backgroundGame;
-var button;
+var flappy;
 var mainstate = {
     preload: function(){
-        // recursos del juego.
         game.load.image('background', '../img/bg.jpeg');
-        game.load.image('bird', '../img/pajaro1.png');
-        game.load.image('btn', '../img/btn.png');
+        game.load.spritesheet('birds', '../img/pajaro.png', 43, 30);
     },
     create: function(){
-        // Inicia el juego.
         backgroundGame = game.add.tileSprite(0, 0, 400, 600, 'background');
-        game.add.sprite(0, 200, 'bird');
-        button = game.add.sprite(game.width/2, game.height/2, 'btn');
-        button.anchor.setTo(0.5, 0.5);
+        flappy = game.add.sprite(0, 200, 'birds');
+        flappy.frame = 1;
+        flappy.animations.add('fly', [0, 1, 3], 7, true);
     },
     
     update: function(){
-        // Animaciones y movimientos del juego.
         backgroundGame.tilePosition.x -= 1;
+        flappy.animations.play('fly');
     }
 };
 
