@@ -4,8 +4,8 @@ var flappy;
 var keys;
 var mainstate = {
     preload: function(){
-        game.load.image('background', '../img/bg.jpeg');
-        game.load.spritesheet('birds', '../img/pajaro.png', 43, 30);
+        game.load.image('background', 'img/bg.jpeg');
+        game.load.spritesheet('birds', 'img/pajaro.png', 43, 30);
     },
     create: function(){
         backgroundGame = game.add.tileSprite(0, 0, 400, 600, 'background');
