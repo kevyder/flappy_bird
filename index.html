@@ -19,16 +19,40 @@
   <script src="js/phaser.min.js" charset="utf-8"></script>
   <script type="text/javascript" src="menu.js"></script>
   <script type="text/javascript" src="game.js"></script>
+  <script type="text/javascript" src="gameover.js"></script>
   <script type="text/javascript" src="main.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <style type="text/css">
+    *{
+      margin: 0;
+      padding: 0;
+    }
     body{
-      background-color: #333;
+      background-color: #000;
+    }
+    #marcianito{
+      width: 100%;
+      margin: 25% auto;
+    }
+    .title{
+      color: red;
+      font-size: 2rem;
     }
   </style>
 </head>
 <body>
-  <center>
-    <div id="container-game"></div>
-  </center>
+  <div class="container">
+    <div class="col-md-4">
+      <img id="marcianito" src="img/marcianito.gif"></img>
+    </div>
+    <center>
+      <div class="col-md-4" id="container-game">
+        <p class="title">Flappy Bird 100% real no fake<p>
+      </div>
+    </center>
+    <div class="col-md-4">
+      <img id="marcianito" src="img/marcianito.gif"></img>
+    </div>
+    </div>
 </body>
 </html>

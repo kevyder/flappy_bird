@@ -27,18 +27,24 @@ var theGame = {
     },
     
     update: function(){
-        if (flappy.inWorld == false){
-            //alert("Muerto :(");
-        }else if (flappy.position.y > 480){
-            //alert("Muerto :(");
+        if (flappy.inWorld == false || flappy.position.y > 450){
+            flappy.alive = false;
+            tubes.forEachAlive(function(t){
+                t.body.velocity.x = 0;
+            }, this);
+            this.state.start('gameover');
         }else{
-            backgroundGame.tilePosition.x -= 1;
-            flappy.animations.play('fly');
+            if(flappy.alive != false){
+              backgroundGame.tilePosition.x -= 1;
+              flappy.animations.play('fly');  
+            }
         }
         
         if (flappy.angle < 20){
             flappy.angle += 1;
         }
+        
+        game.physics.arcade.overlap(flappy, tubes, this.touchTube, null, this);
     },
     
     jump: function(){
@@ -61,5 +67,19 @@ var theGame = {
         tube.body.velocity.x = -180;
         tube.checkWorldBounds = true;
         tube.outOfBoundsKill = true;
+    },
+    
+    touchTube: function(){
+        if (flappy.alive == false){
+            return;
+        }
+        flappy.alive = false;
+        game.time.events.remove(timer);
+        tubes.forEachAlive(function(t){
+            t.body.velocity.x = 0;
+        }, this);
+        game.input.enabled = false; // Desactiva los controles
+        flappy.angle -= 269;
+        flappy.body.gravity.y = 700;
     }
 };
