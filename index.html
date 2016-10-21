@@ -41,6 +41,7 @@
   </style>
 </head>
 <body>
+  <audio id="cumbia" src="sounds/cumbia.mp3" loop="infinite" autoplay onloadeddata="setHalfVolume()"></audio>
   <div class="container">
     <div class="col-md-4">
       <img id="marcianito" src="img/marcianito.gif"></img>
@@ -55,4 +56,10 @@
     </div>
     </div>
 </body>
+<script type="text/javascript">
+    function setHalfVolume() {
+    var myAudio = document.getElementById("cumbia");  
+    myAudio.volume = 0.3;
+    }
+  </script>
 </html>

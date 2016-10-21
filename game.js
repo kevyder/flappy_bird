@@ -5,12 +5,16 @@ var spaceBar;
 var timer;
 var points;
 var txtPoints;
+var pointSound;
+var hitSound;
 var theGame = {
     preload: function(){
         game.load.image('background', 'img/bg.jpeg');
         game.load.image('tube', 'img/tube.png');
         game.load.spritesheet('birds', 'img/pajaro.png', 43, 30);
         game.forceSingleUpdate = true;
+        game.load.audio('pointSound', 'sounds/sfx_point.ogg');
+        game.load.audio('hitSound', 'sounds/sfx_hit.ogg');
     },
     create: function(){
         backgroundGame = game.add.tileSprite(0, 0, 370, 550, 'background');
@@ -28,6 +32,8 @@ var theGame = {
         timer = game.time.events.loop(1500, this.tubesWorld, this);
         points = -1;
         txtPoints = game.add.text(20, 20, "0", {fill : "#FFF"});
+        pointSound = game.add.audio('pointSound');
+        hitSound = game.add.audio('hitSound');
     },
     
     update: function(){
@@ -64,6 +70,9 @@ var theGame = {
             }
         }
         points += 1;
+        if (points > 0){
+            pointSound.play();
+        }
         txtPoints.text = points;
     },
     
@@ -80,6 +89,7 @@ var theGame = {
             return;
         }
         flappy.alive = false;
+        hitSound.play();
         game.time.events.remove(timer);
         tubes.forEachAlive(function(t){
             t.body.velocity.x = 0;
