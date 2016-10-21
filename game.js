@@ -3,11 +3,13 @@ var flappy;
 var tubes;
 var spaceBar;
 var timer;
+var points;
+var txtPoints;
 var theGame = {
     preload: function(){
         game.load.image('background', 'img/bg.jpeg');
-        game.load.spritesheet('birds', 'img/pajaro.png', 43, 30);
         game.load.image('tube', 'img/tube.png');
+        game.load.spritesheet('birds', 'img/pajaro.png', 43, 30);
         game.forceSingleUpdate = true;
     },
     create: function(){
@@ -24,6 +26,8 @@ var theGame = {
         spaceBar = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
         spaceBar.onDown.add(this.jump, this);
         timer = game.time.events.loop(1500, this.tubesWorld, this);
+        points = -1;
+        txtPoints = game.add.text(20, 20, "0", {fill : "#FFF"});
     },
     
     update: function(){
@@ -44,7 +48,7 @@ var theGame = {
             flappy.angle += 1;
         }
         
-        game.physics.arcade.overlap(flappy, tubes, this.touchTube, null, this);
+        game.physics.arcade.overlap(tubes, flappy, this.touchTube, null, this);
     },
     
     jump: function(){
@@ -59,6 +63,8 @@ var theGame = {
                 this.createTube(370, i * 55 + 20);
             }
         }
+        points += 1;
+        txtPoints.text = points;
     },
     
     createTube: function(x, y){
