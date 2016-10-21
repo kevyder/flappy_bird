@@ -6,7 +6,7 @@ var Menu = {
      create: function(){
          var button = this.add.button(game.width/2, game.height/2, 'btn', this.startGame, this);
          button.anchor.setTo(0.5);
-         var text = game.add.text(game.world.centerX, game.world.centerY - 85, "Iniciar Juego");
+         var text = game.add.text(game.world.centerX, game.world.centerY - 85, "☺ Iniciar Juego ☺");
          text.anchor.setTo(0.5);
          text.fontSize = 24;
          text.fill = '#333';
