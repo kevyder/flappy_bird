@@ -2,5 +2,5 @@
 
 21/10/2016
 
-http://kevinrodriguez.me/flappybird
+http://kevinrodriguez.me/flappy_bird
 
